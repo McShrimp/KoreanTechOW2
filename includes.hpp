@@ -68,7 +68,7 @@ struct {\
 
 namespace OW {
 	auto viewMatrixVal = SDK->RPM<uint64_t>(SDK->dwGameBase + offset::Address_viewmatrix_base) ^ offset::offset_viewmatrix_xor_key;
-	Vector2 WindowSize = SDK->RPM<Vector2>(viewMatrixVal + 0x41C);
+	Vector2 WindowSize = SDK->RPM<Vector2>(viewMatrixVal + 0x424);
 	float WX = WindowSize.X;
 	float WY = WindowSize.Y;
 
@@ -109,6 +109,7 @@ namespace OW {
 
 	enum eHero : uint64_t
 	{
+
 		HERO_REAPER = 0x2E0000000000002,
 		HERO_TRACER = 0x2E0000000000003,
 		HERO_MERCY = 0x2E0000000000004,
@@ -123,7 +124,7 @@ namespace OW {
 		HERO_ZENYATTA = 0x2E0000000000020,
 		HERO_GENJI = 0x2E0000000000029,
 		HERO_ROADHOG = 0x2E0000000000040,
-		HERO_MCCREE = 0x2E0000000000042,
+		HERO_CASSIDY = 0x2E0000000000042,
 		HERO_JUNKRAT = 0x2E0000000000065,
 		HERO_ZARYA = 0x2E0000000000068,
 		HERO_SOLDIER76 = 0x2E000000000006E,
@@ -145,27 +146,32 @@ namespace OW {
 		HERO_SIGMA = 0x2E000000000023B,
 		HERO_ECHO = 0x2E0000000000206,
 		HERO_RAMATTRA = 0x2E000000000028D,
-		HERO_TRAININGBOT1 = 0x2E000000000016B,
-		HERO_TRAININGBOT2 = 0x2E000000000016C,
-		HERO_TRAININGBOT3 = 0x2E000000000016D,
-		HERO_TRAININGBOT4 = 0x2E000000000016E,
+		HERO_LIFEWEAVER = 0x02E0000000000291,
+		HERO_TRAININGBOT1 = 0x2e000000000033c,
+		HERO_TRAININGBOT2 = 0x2E0000000000337,
+		HERO_TRAININGBOT3 = 0x2E000000000035a,
+		HERO_TRAININGBOT4 = 0x2E000000000016c,
+		HERO_TRAININGBOT5 = 0x2E0000000000363,
+		HERO_TRAININGBOT6 = 0x2E0000000000349,
+		HERO_ILLARI = 0x02e000000000031c,
 	};
 
 	enum eComponentType
 	{
 		TYPE_ERROR = -1,
 		TYPE_VELOCITY = 0x4,
-		TYPE_TEAM = 0x1F,
-		TYPE_BONE = 0x25,
-		TYPE_ROTATION = 0x2D,
-		TYPE_LINK = 0x32,
-		TYPE_P_VISIBILITY = 0x33,
-		TYPE_SKILL = 0x35,
-		TYPE_ANGLE = 0x37,
-		TYPE_HEALTH = 0x39,
-		TYPE_PLAYERCONTROLLER = 0x41,
-		TYPE_P_HEROID = 0x52,
-		TYPE_OUTLINE = 0x5A,
+		TYPE_TEAM = 0x21,
+		TYPE_NAME = 0x25,
+		TYPE_BONE = 0x27,
+		TYPE_ROTATION = 0x2F,
+		TYPE_LINK = 0x34,
+		TYPE_P_VISIBILITY = 0x35,
+		TYPE_SKILL = 0x37,
+		TYPE_ANGLE = 0x39,
+		TYPE_HEALTH = 0x3B,
+		TYPE_PLAYERCONTROLLER = 0x43,
+		TYPE_P_HEROID = 0x54,
+		TYPE_OUTLINE = 0x5B,
 	};
 
 	const char* keys = ("VK_XBUTTON2");
@@ -260,7 +266,7 @@ namespace OW {
 			__try {
 				if (this->pos != Vector3(0, 0, 0) && this->PlayerHealth > 0) 
 				{
-					uint64_t pBoneData = SDK->RPM<uint64_t>(this->VelocityBase + 0x810);
+					uint64_t pBoneData = SDK->RPM<uint64_t>(this->VelocityBase + 0x870);
 					if (pBoneData)
 					{
 						uint64_t bonesBase = SDK->RPM<uint64_t>(pBoneData + 0x20);
@@ -310,7 +316,7 @@ namespace OW {
 				return std::array<int, 18>{BONE_HEAD, BONE_NECK, BONE_BODY, BONE_BODY_BOT, BONE_L_SHOULDER, BONE_R_SHOULDER, BONE_L_ELBOW, BONE_R_ELBOW, BONE_L_ANKLE, BONE_R_ANKLE, BONE_L_SHANK, BONE_R_SHANK, BONE_L_HAND, BONE_R_HAND, 99, 89, 100, 90};
 			case eHero::HERO_LUCIO:
 				return std::array<int, 18>{BONE_HEAD, BONE_NECK, BONE_BODY, BONE_BODY_BOT, BONE_L_SHOULDER, BONE_R_SHOULDER, BONE_L_ELBOW, BONE_R_ELBOW, BONE_L_ANKLE, BONE_R_ANKLE, BONE_L_SHANK, BONE_R_SHANK, BONE_L_HAND, BONE_R_HAND, 99, 89, 100, 90};
-			case eHero::HERO_MCCREE:
+			case eHero::HERO_CASSIDY:
 				return std::array<int, 18>{BONE_HEAD, BONE_NECK, BONE_BODY, BONE_BODY_BOT, BONE_L_SHOULDER, BONE_R_SHOULDER, BONE_L_ELBOW, BONE_R_ELBOW, BONE_L_ANKLE, BONE_R_ANKLE, BONE_L_SHANK, BONE_R_SHANK, BONE_L_HAND, BONE_R_HAND, 99, 89, 100, 90};
 			case eHero::HERO_MEI:
 				return std::array<int, 18>{BONE_HEAD, BONE_NECK, BONE_BODY, BONE_BODY_BOT, BONE_L_SHOULDER, BONE_R_SHOULDER, BONE_L_ELBOW, 56, BONE_L_ANKLE, BONE_R_ANKLE, BONE_L_SHANK, BONE_R_SHANK, BONE_L_HAND, 70, 99, 89, 100, 90};
@@ -456,6 +462,8 @@ namespace OW {
 	};
 
 	inline std::vector<std::pair<uint64_t, uint64_t>>ow_entities = {};
+	inline std::vector<std::pair<uint64_t, uint64_t>>last_ow_entities = {};
+
 	inline std::vector<c_entity> entities = {};
 	inline c_entity local_entity = {};
 	inline UINT g_Width = {}, g_Height = {};

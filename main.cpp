@@ -9,11 +9,10 @@ void MainThread() {
 	if (!SDK->Initialize() || !SDK->GetGlobalKey())
 		exit(0);
 
-
 	_beginthread((_beginthread_proc_type)entity_scan_thread, 0, 0);
 	_beginthread((_beginthread_proc_type)entity_thread, 0, 0);
 	_beginthread((_beginthread_proc_type)viewmatrix_thread, 0, 0);
-	_beginthread((_beginthread_proc_type)aimbot_thread, 0, 0);
+	//_beginthread((_beginthread_proc_type)aimbot_thread, 0, 0);
 	_beginthread((_beginthread_proc_type)overlay_thread, 0, 0);
 
 	while (FindWindowA(skCrypt("TankWindowClass"), NULL))
@@ -34,8 +33,5 @@ void MainThread() {
 int main() {
 	using namespace OW;
 
-	bool is_login = false;
-	std::string license{};
 	MainThread();
-
 }

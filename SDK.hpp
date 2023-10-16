@@ -2,6 +2,7 @@
 #include "includes.hpp"
 
 namespace OW {
+	using namespace std;
 	class MemorySDK {
 	private:
 		std::vector<MEMORY_BASIC_INFORMATION64> mbis;
@@ -35,6 +36,7 @@ namespace OW {
 		uint64_t dwGameBase = 0;
 		uint64_t GlobalKey1 = 0, GlobalKey2 = 0;
 		uint64_t g_player_controller = 0;
+		size_t SectionSize;
 	public:
 		inline bool Initialize()
 		{
@@ -43,21 +45,32 @@ namespace OW {
 
 			hProcess = OpenProcess(PROCESS_ALL_ACCESS, false, dwPID);
 			dwGameBase = GetModuleBaseAddress(dwPID, skCrypt("Overwatch.exe"));
+
+			MEMORY_BASIC_INFORMATION mbi{};
+			uintptr_t entity_list = RPM<uint64_t>(dwGameBase + offset::Address_entity_base);
+			VirtualQueryEx(hProcess, (LPCVOID)entity_list, &mbi, sizeof(mbi));
+
+			SectionSize = mbi.RegionSize;
+
 			return dwGameBase;
 		}
 
 		inline bool GetGlobalKey() {
-			static bool is_found = false;
 			static auto key_sig = (BYTE*)"\x00\x00\x00\x00\x80\x00\x00\x40\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x3f";
 			static auto key_mask = "x???xx?xx?????xxxxxx";
-			if (is_found == false) {
-				static uint64_t Key = FindPatternExReg(key_sig, key_mask, 0x100000) - 0x70;
-				if (RPM<uint64_t>(Key + 0x10) && RPM<uint64_t>(Key + 0x28))
-				{
-					GlobalKey1 = RPM<uint64_t>(Key + 0x10); 
+			while (true) {
+				uint64_t Key = FindPatternExReg(key_sig, key_mask, 0x100000) - 0x70;
+				if (Key && Key < 0xf000000000000000 && RPM<uint64_t>(Key + 0x10) > 0x1000000000000000 && RPM<uint64_t>(Key + 0x28) > 0x1000000000000000) {
+					GlobalKey1 = RPM<uint64_t>(Key + 0x18);
 					GlobalKey2 = RPM<uint64_t>(Key + 0x28);
+					cout << endl;
+					cout << "GlobalKey1: 0x" << hex << GlobalKey1 << endl;
+					cout << "GlobalKey2: 0x" << hex << GlobalKey2 << endl;
+
 					return true;
 				}
+				Sleep(1000);
+				cout << ".";
 			}
 		}
 

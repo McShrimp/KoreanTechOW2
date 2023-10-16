@@ -38,8 +38,9 @@ namespace OW {
 	struct velocity_compo_t {
 		union {
 			OFF_MEMB(XMFLOAT3, velocity, 0x50);
-			OFF_MEMB(XMFLOAT3, location, 0x1B0);
-			OFF_MEMB(uint64_t, bonedata, 0x810);
+			OFF_MEMB(XMFLOAT3, location, 0x200);
+			OFF_MEMB(uint64_t, bonedata, 0x870);
+
 		};
 	};
 	struct hero_compo_t {
@@ -57,6 +58,7 @@ namespace OW {
 	inline std::string GetHeroNames(uint64_t HeroID, uint64_t LinkBase) {
 		switch (HeroID)
 		{
+
 		case eHero::HERO_REAPER:
 			return skCrypt("Reaper").decrypt();
 		case eHero::HERO_TRACER:
@@ -85,8 +87,8 @@ namespace OW {
 			return skCrypt("Genji").decrypt();
 		case eHero::HERO_ROADHOG:
 			return skCrypt("Roadhog").decrypt();
-		case eHero::HERO_MCCREE:
-			return skCrypt("McCree").decrypt();
+		case eHero::HERO_CASSIDY:
+			return skCrypt("Cassidy").decrypt();
 		case eHero::HERO_JUNKRAT:
 			return skCrypt("Junkrat").decrypt();
 		case eHero::HERO_ZARYA:
@@ -127,11 +129,15 @@ namespace OW {
 		case eHero::HERO_JUNKERQUEEN:
 			return skCrypt("Junker Queen").decrypt();
 		case eHero::HERO_SIGMA:
-			return skCrypt("Sigma").decrypt();                    
+			return skCrypt("Sigma").decrypt();
 		case eHero::HERO_ECHO:
 			return skCrypt("Echo").decrypt();
 		case eHero::HERO_RAMATTRA:
 			return skCrypt("Ramattra").decrypt();
+		case eHero::HERO_LIFEWEAVER:
+			return skCrypt("Lifeweaver").decrypt();
+		case eHero::HERO_ILLARI:
+			return skCrypt("Illari").decrypt();
 		case eHero::HERO_TRAININGBOT1:
 			return skCrypt("Bot").decrypt();
 		case eHero::HERO_TRAININGBOT2:
@@ -139,6 +145,10 @@ namespace OW {
 		case eHero::HERO_TRAININGBOT3:
 			return skCrypt("Bot").decrypt();
 		case eHero::HERO_TRAININGBOT4:
+			return skCrypt("Bot").decrypt();
+		case eHero::HERO_TRAININGBOT5:
+			return skCrypt("Bot").decrypt();
+		case eHero::HERO_TRAININGBOT6:
 			return skCrypt("Bot").decrypt();
 		default:
 			return skCrypt("Unknown").decrypt();
@@ -157,151 +167,124 @@ namespace OW {
 		}
 	}
 
-	inline unsigned __int64 __fastcall DecryptVis(__int64 a1) 
-
-	{
-		uint64_t v2;
-		uint64_t v3;
-		uint64_t v4;
-		uint64_t v5;
-		uint64_t v6;
-		uint64_t v7;
-		__m128i v8;
-		__m128i v9;
-		__m128i v10;
-		__m128i v11;
-
-		v2 = SDK->dwGameBase + 0x7A4552;
+	inline unsigned __int64 __fastcall DecryptVis(__int64 a1) {
+		__int64 v1; // rsi
+		unsigned __int64 v2; // rbx
+		unsigned __int64 v3; // r9
+		__int64 v4; // rsi
+		unsigned __int64 v5; // rdx
+		unsigned __int64 v6; // rcx
+		__m128i v7; // xmm1
+		__m128i v8; // xmm2
+		__m128i v9; // xmm0
+		__m128i v10; // xmm1
+		v1 = a1;
+		v2 = SDK->dwGameBase + offset::Visible_Fn;
 		v3 = v2 + 0x8;
-		v4 = 0x0;
-		v5 = SDK->RPM<uint64_t>(SDK->dwGameBase + 0x3AA7180
-			+ 8 * (((uint8_t)a1 - 0x11) & 0x7F)
-			+ (((uint64_t)(a1 + 0x220329B4B2A3D7EF) >> 7) & 7)) ^ v2 ^ (a1 + 0x220329B4B2A3D7EF);
-		v6 = (v3 - v2 + 0x7) >> 0x3;
+		v4 = SDK->RPM<uint64_t>(SDK->dwGameBase + 0x37451C0
+			+ 8 * (((uint8_t)a1 + 0x51) & 0x7F)
+			+ (((uint64_t)(a1 - offset::Visible_Key) >> 7) & 7)) ^ v2 ^ (a1 - offset::Visible_Key);
+		v5 = (v3 - v2 + 7) >> 3;
+		v6 = 0i64;
 		if (v2 > v3)
-			v6 = 0x0;
-		if (v6 && v6 >= 0x4)
-		{
-			v7 = v6 & 0xFFFFFFFFFFFFFFFC;
-			ZeroMemory(&v8, sizeof(v8));
-			ZeroMemory(&v9, sizeof(v9));
-			do
-			{
-				v4 += 0x4;
-				v8 = _mm_xor_si128(v8, _mm_loadu_si128((const __m128i*)v2));
-				v10 = _mm_loadu_si128((const __m128i*)(v2 + 0x10));
-				v2 += 0x20;
-				v9 = _mm_xor_si128(v9, v10);
-			} while (v4 < v7);
-			v11 = _mm_xor_si128(v8, v9);
-			v5 ^= _mm_xor_si128(v11, _mm_srli_si128(v11, 8)).m128i_u64[0];
+			v5 = 0i64;
+		if (v5) {
+			if (v5 >= 4) {
+				ZeroMemory(&v7, sizeof(v7));
+				ZeroMemory(&v8, sizeof(v8));
+				do {
+					v6 += 4i64;
+					v7 = _mm_xor_si128(v7, _mm_loadu_si128((const __m128i*)v2));
+					v9 = _mm_loadu_si128((const __m128i*)(v2 + 16));
+					v2 += 32i64;
+					v8 = _mm_xor_si128(v8, v9);
+				} while (v6 < (v5 & 0xFFFFFFFFFFFFFFFCui64));
+				v10 = _mm_xor_si128(v7, v8);
+				auto addr = _mm_xor_si128(v10, _mm_srli_si128(v10, 8));
+				v4 ^= *(__int64*)&addr;
+			}
 		}
-		for (; v2 < v3; v2 += 0x8)
-			v5 ^= SDK->RPM<uint64_t>(v2);
-		return v5 ^ ~v3 ^ 0x220329B4B2A3D7EF;
+		for (; v6 < v5; ++v6) {
+			v4 ^= SDK->RPM<uintptr_t>(v2);
+			v2 += 8i64;
+		}
+		return v4 ^ ~v3 ^ 0x9233688BA979DB51;
 	}
 
-	inline uint64_t DecryptComponent(uint64_t parent, uint8_t idx) 
-	{
+	inline uintptr_t DecryptComponent(uintptr_t parent, uint8_t idx) {
 		__try {
-			if (parent)
-			{
+			if (parent) {
 				unsigned __int64 v1 = parent;
-				unsigned __int64 v2 = (uint64_t)1 << (uint64_t)(idx & 0x3F);
+				unsigned __int64 v2 = (uintptr_t)1 << (uintptr_t)(idx & 0x3F);
 				unsigned __int64 v3 = v2 - 1;
 				unsigned __int64 v4 = idx & 0x3F;
 				unsigned __int64 v5 = idx / 0x3F;
-				unsigned __int64 v6 = SDK->RPM<uint64_t>(v1 + 8 * (uint32_t)v5 + 0xF0);
-				__int64 v7 = (v2 & SDK->RPM<uint64_t>(v1 + 8 * (uint32_t)v5 + 0xF0)) >> v4;
+				unsigned __int64 v6 = SDK->RPM<uintptr_t>((v1 + 8 * (uint32_t)v5 + 0x100));
+				unsigned __int64 v7 = (v2 & SDK->RPM<uintptr_t>((v1 + 8 * (uint32_t)v5 + 0x100))) >> v4;
 				unsigned __int64 v8 = (v3 & v6) - (((v3 & v6) >> 1) & 0x5555555555555555);
-				unsigned __int64 v9 = SDK->RPM<uint64_t>(SDK->RPM<uint64_t>(v1 + 0x60) + 8 * (SDK->RPM<uint8_t>((uint32_t)v5 + v1 + 0x110) + ((0x101010101010101 * (((v8 & 0x3333333333333333) + ((v8 >> 2) & 0x3333333333333333) + (((v8 & 0x3333333333333333) + ((v8 >> 2) & 0x3333333333333333)) >> 4)) & 0xF0F0F0F0F0F0F0F)) >> 0x38)));
+				unsigned __int64 v9 = SDK->RPM<uintptr_t>((SDK->RPM<uintptr_t>((v1 + 0x70)) + 8 * (SDK->RPM<uint8_t>(((uint32_t)v5 + v1 + 0x120)) + ((0x101010101010101 * (((v8 & 0x3333333333333333) + ((v8 >> 2) & 0x3333333333333333) + (((v8 & 0x3333333333333333) + ((v8 >> 2) & 0x3333333333333333)) >> 4)) & 0xF0F0F0F0F0F0F0F)) >> 0x38))));
 				unsigned __int64 Key1 = SDK->GlobalKey1;
 				unsigned __int64 Key2 = SDK->GlobalKey2;
-				uint64_t D1 = (unsigned int)v9 | v9 & 0xFFFFFFFF00000000ui64 ^ ((unsigned __int64)((unsigned int)v9
-					- (unsigned int)SDK->RPM<uint64_t>(SDK->dwGameBase + 0x3AA6160 + (Key1 & 0xFFF))) << 32);
-				uint64_t D2 = (unsigned int)Key2 ^ (unsigned int)D1 | (Key2 ^ ((unsigned int)D1 | D1 & 0xFFFFFFFF00000000ui64 ^ ((unsigned __int64)(unsigned int)(970067735 - D1) << 32))) & 0xFFFFFFFF00000000ui64 ^ ((unsigned __int64)(2 * ((unsigned int)Key2 ^ (unsigned int)D1) - __ROL4__(SDK->RPM<uint64_t>(SDK->dwGameBase + 0x3AA6160 + (Key1 >> 52)), 9)) << 32);
-				uint64_t D3 = -(int)v7 & ((unsigned int)D2 | D2 & 0xFFFFFFFF00000000ui64 ^ ((unsigned __int64)(unsigned int)(HIDWORD(SDK->RPM<uint64_t>(SDK->dwGameBase + 0x3AA6160 + (Key1 & 0xFFF))) - D2) << 32));
-
-				return D3;
+				unsigned __int64 dummy = SDK->RPM<_QWORD>(SDK->dwGameBase + 0x37441A0 + (Key1 >> 0x34));
+				unsigned __int64 dummy2 = SDK->RPM<_QWORD>(SDK->dwGameBase + 0x37441A0 + (Key1 & 0xFFF));
+				unsigned __int64 v10 = Key2 ^ ((unsigned int)v9 | ((unsigned int)v9 | v9 & 0xFFFFFFFF00000000ui64 ^ (((unsigned int)v9 ^ 0xFFFFFFFFAE692641ui64) << 0x20)) & 0xFFFFFFFF00000000ui64 ^ ((unsigned __int64)((unsigned int)v9 ^ (unsigned int)~HIDWORD(dummy)) << 0x20));
+				unsigned __int64 v11 = -(int)v7 & ((unsigned int)v10 | ((unsigned int)v10 | v10 & 0xFFFFFFFF00000000ui64 ^ ((unsigned __int64)((unsigned int)dummy2 - (unsigned int)v10) << 0x20)) & 0xFFFFFFFF00000000ui64 ^ ((unsigned __int64)((unsigned int)v10 ^ 0x51DD7F1) << 0x20));
+				return v11;
 			}
 		}
-		__except (1) {
+		__except (EXCEPTION_EXECUTE_HANDLER) {}
+		return NULL;
+	}
 
+	inline uintptr_t GetHeapManager(uint8_t index) {
+		uintptr_t v0 = SDK->RPM<uintptr_t>((SDK->dwGameBase + offset::HeapManager));
+		if (v0 != 0) {
+			auto v1 = SDK->RPM<uintptr_t>(v0 + offset::HeapManager_Pointer) ^ SDK->RPM<uintptr_t>(SDK->dwGameBase + offset::HeapManager_Var) ^ offset::HeapManager_Key;
+			if (v1 != 0) {
+				uintptr_t v2 = SDK->RPM<uintptr_t>((v1 + 0x8 * index));
+				return v2;
+			}
 		}
+		return NULL;
 	}
 
-	inline uint64_t GetSenstivePTR()
+	inline uintptr_t GetSenstivePTR()
 	{
-		uint64_t tmp = SDK->RPM<uint64_t>(SDK->dwGameBase + offset::Address_sens_base);
-		tmp = SDK->RPM<uint64_t>(tmp + 0x38);
-		tmp = SDK->RPM<uint64_t>(tmp + 0x8);
-		tmp = SDK->RPM<uint64_t>(tmp + 0x8);
-		tmp = SDK->RPM<uint64_t>(tmp + 0x8);
-		tmp += 0x1FC8;
-		return tmp;
+		uintptr_t heap = GetHeapManager(6);
+		if (heap) {
+			return heap + 0x1FE0;
+		}
+		return NULL;
 	}
 
-	inline uint64_t GetHeapManager(uint8_t index) 
-	{
-		uint64_t v5 = SDK->RPM<uint64_t>(SDK->RPM<uint64_t>(SDK->dwGameBase + offset::Address_HeapManager) + 0x158);
-		v5 += 0x393770CF029B96C7;
-		v5 ^= 0x4C27BCB15D3ABEB1;
-		return SDK->RPM<uint64_t>(v5 + (index * 0x8));
-	}
-	 
 	__forceinline std::vector<std::pair<uint64_t, uint64_t>> get_ow_entities()
 	{
 		std::vector<std::pair<uint64_t, uint64_t>> result{};
 
-		struct Entity {
-			uint64_t entity;
-			uint64_t pad;
-		};
+		uintptr_t entity_list = SDK->RPM<uint64_t>(SDK->dwGameBase + offset::Address_entity_base);
 
-		uintptr_t entity_list = SDK->RPM<uint64_t>(SDK->dwGameBase + offset::Address_entity_base); 
-
-		MEMORY_BASIC_INFORMATION mbi{};
-		VirtualQueryEx(SDK->hProcess, (LPCVOID)entity_list, &mbi, sizeof(mbi));
-
-		SIZE_T entity_list_size = mbi.RegionSize, count = 0, count2 = 0; 
-		Entity* raw_list = new Entity[entity_list_size];
-
-		for (size_t i = entity_list_size; i > 0; i -= 0x400) // 이거 홍승이가 올린거쓰나보네 ㄷㄷ 
+		for (size_t i = 0x00; i < SDK->SectionSize; i += 0x10)
 		{
-			if (ReadProcessMemory(SDK->hProcess, reinterpret_cast<PVOID>(entity_list), raw_list, i * sizeof(Entity), nullptr))
-			{
-				entity_list_size = i;
-				break;
-			}
-		}
-
-		for (size_t i = 0; i < entity_list_size; ++i)
-		{
-			uint64_t cur_entity = raw_list[i].entity;
+			uint64_t cur_entity = SDK->RPM<uint64_t>(entity_list + i);
 			if (!cur_entity)
 				continue;
 			uint64_t common_linker = DecryptComponent(cur_entity, TYPE_LINK);
 			if (!common_linker)
 				continue;
-			auto _get_entity_by_unique_id = [&raw_list, &entity_list_size](uint32_t unique_id) -> uint64_t
+			uint64_t common = 0;
+			uint32_t unique_id = SDK->RPM<uint32_t>(common_linker + 0xD4);
+			for (size_t o = 0x00; o < SDK->SectionSize; o += 0x10)
 			{
-				for (size_t x = 0; x < entity_list_size; ++x)
+				uint64_t ent = SDK->RPM<uint64_t>(entity_list + o);
+				if (!ent)
+					continue;
+				if (SDK->RPM<uint32_t>(ent + 0x128) == unique_id)
 				{
-					uint64_t cur_entity = raw_list[x].entity;
-					if (!cur_entity)
-						continue;
-
-					if (SDK->RPM<uint32_t>(cur_entity + 0x118) == unique_id)
-						return cur_entity;
+					common = ent;
+					break;
 				}
-
-				return 0;
-			};
-
-			uint64_t common = _get_entity_by_unique_id(SDK->RPM<uint32_t>(common_linker + 0xD4)), dummy; // D4 
-			if (!ReadProcessMemory(SDK->hProcess, LPVOID(common), &dummy, 8, nullptr))
-				continue;
-			if (!cur_entity)
+			}
+			if (!common)
 				continue;
 			result.emplace_back(common, cur_entity);
 		}

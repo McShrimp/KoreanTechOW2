@@ -6,10 +6,11 @@ float WX, WY;
 namespace OW {
 	
 	inline void entity_scan_thread() {
-		while (true) {
-			ow_entities = get_ow_entities();
-			Sleep(300);
-		}
+		last_ow_entities = ow_entities;
+		ow_entities = get_ow_entities();
+		if (last_ow_entities.size() != ow_entities.size())
+			cout << "Entities: " << dec << ow_entities.size() << endl;
+		Sleep(300);
 	}
 
 	inline void entity_thread() {
@@ -92,7 +93,7 @@ namespace OW {
 		__try {
 			while (true) {
 				auto viewMatrixVal = SDK->RPM<uint64_t>(SDK->dwGameBase + offset::Address_viewmatrix_base) ^ offset::offset_viewmatrix_xor_key;
-				Vector2 WindowSize = SDK->RPM<Vector2>(viewMatrixVal + 0x41C);
+				Vector2 WindowSize = SDK->RPM<Vector2>(viewMatrixVal + 0x424);
 				WX = WindowSize.X;
 				WY = WindowSize.Y;
 				viewMatrix = SDK->RPM<Matrix>(viewMatrixPtr);
