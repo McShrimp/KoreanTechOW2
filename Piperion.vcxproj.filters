@@ -31,9 +31,6 @@
     <Filter Include="Render\Imgui">
       <UniqueIdentifier>{5e8b6709-c395-44b9-a122-7993a767dc81}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Web">
-      <UniqueIdentifier>{b2fedb46-780a-4c08-8d13-32a1c039007a}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GetComponent.hpp">
@@ -65,12 +62,6 @@
     </ClInclude>
     <ClInclude Include="Xor.hpp">
       <Filter>SkCrypt</Filter>
-    </ClInclude>
-    <ClInclude Include="Web.hpp">
-      <Filter>Web</Filter>
-    </ClInclude>
-    <ClInclude Include="rsa.h">
-      <Filter>Web</Filter>
     </ClInclude>
     <ClInclude Include="IDAdefs.h" />
     <ClInclude Include="ImGui\imconfig.h">

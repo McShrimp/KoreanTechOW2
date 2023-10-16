@@ -159,11 +159,9 @@
     <ClInclude Include="offsets.hpp" />
     <ClInclude Include="Overwatch.hpp" />
     <ClInclude Include="Renderer.hpp" />
-    <ClInclude Include="rsa.h" />
     <ClInclude Include="SDK.hpp" />
     <ClInclude Include="Target.hpp" />
     <ClInclude Include="Vector.hpp" />
-    <ClInclude Include="Web.hpp" />
     <ClInclude Include="Xor.hpp" />
   </ItemGroup>
   <ItemGroup>

@@ -6,11 +6,13 @@ float WX, WY;
 namespace OW {
 	
 	inline void entity_scan_thread() {
-		last_ow_entities = ow_entities;
-		ow_entities = get_ow_entities();
-		if (last_ow_entities.size() != ow_entities.size())
-			cout << "Entities: " << dec << ow_entities.size() << endl;
-		Sleep(300);
+		while (true) {
+			last_ow_entities = ow_entities;
+			ow_entities = get_ow_entities();
+			if (last_ow_entities.size() != ow_entities.size())
+				cout << "Entities: " << dec << ow_entities.size() << endl;
+			Sleep(300);
+		}
 	}
 
 	inline void entity_thread() {
@@ -291,16 +293,18 @@ namespace OW {
 
 			MSG msg;
 			ZeroMemory(&msg, sizeof(msg));
-			int FPS;
+			int FPS = 120;
+
+			ShowWindow(GetConsoleWindow(), SW_HIDE);
 
 			while (FindWindowA(skCrypt("TankWindowClass"), NULL))
 			{
-				DEVMODE dm;
-				dm.dmSize = sizeof(DEVMODE);
+				//DEVMODE dm;
+				//dm.dmSize = sizeof(DEVMODE);
 
-				EnumDisplaySettings(NULL, ENUM_CURRENT_SETTINGS, &dm);
+				//numDisplaySettings(NULL, ENUM_CURRENT_SETTINGS, &dm);
 
-				FPS = dm.dmDisplayFrequency;
+				//FPS = dm.dmDisplayFrequency;
 
 				a = std::chrono::system_clock::now();
 				std::chrono::duration<double, std::milli> work_time = a - b;
@@ -431,6 +435,7 @@ namespace OW {
 							ImGui::Separator();
 						}
 					}
+					ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
 					ImGui::End();
 				}
 
