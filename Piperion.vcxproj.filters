@@ -48,30 +48,6 @@
     <ClInclude Include="Config.hpp">
       <Filter>Config</Filter>
     </ClInclude>
-    <ClInclude Include="Fucking ImGui\imconfig.h">
-      <Filter>Render\Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Fucking ImGui\imgui.h">
-      <Filter>Render\Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Fucking ImGui\imgui_impl_dx11.h">
-      <Filter>Render\Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Fucking ImGui\imgui_impl_win32.h">
-      <Filter>Render\Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Fucking ImGui\imgui_internal.h">
-      <Filter>Render\Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Fucking ImGui\imstb_rectpack.h">
-      <Filter>Render\Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Fucking ImGui\imstb_textedit.h">
-      <Filter>Render\Imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Fucking ImGui\imstb_truetype.h">
-      <Filter>Render\Imgui</Filter>
-    </ClInclude>
     <ClInclude Include="SDK.hpp">
       <Filter>SDK\Memory</Filter>
     </ClInclude>
@@ -97,28 +73,52 @@
       <Filter>Web</Filter>
     </ClInclude>
     <ClInclude Include="IDAdefs.h" />
+    <ClInclude Include="ImGui\imconfig.h">
+      <Filter>Render\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui.h">
+      <Filter>Render\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_dx11.h">
+      <Filter>Render\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_win32.h">
+      <Filter>Render\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_internal.h">
+      <Filter>Render\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_rectpack.h">
+      <Filter>Render\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_textedit.h">
+      <Filter>Render\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_truetype.h">
+      <Filter>Render\Imgui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Fucking ImGui\imgui.cpp">
+    <ClCompile Include="ImGui\imgui.cpp">
       <Filter>Render\Imgui</Filter>
     </ClCompile>
-    <ClCompile Include="Fucking ImGui\imgui_demo.cpp">
+    <ClCompile Include="ImGui\imgui_demo.cpp">
       <Filter>Render\Imgui</Filter>
     </ClCompile>
-    <ClCompile Include="Fucking ImGui\imgui_draw.cpp">
+    <ClCompile Include="ImGui\imgui_draw.cpp">
       <Filter>Render\Imgui</Filter>
     </ClCompile>
-    <ClCompile Include="Fucking ImGui\imgui_impl_dx11.cpp">
+    <ClCompile Include="ImGui\imgui_impl_dx11.cpp">
       <Filter>Render\Imgui</Filter>
     </ClCompile>
-    <ClCompile Include="Fucking ImGui\imgui_impl_win32.cpp">
+    <ClCompile Include="ImGui\imgui_impl_win32.cpp">
       <Filter>Render\Imgui</Filter>
     </ClCompile>
-    <ClCompile Include="Fucking ImGui\imgui_tables.cpp">
+    <ClCompile Include="ImGui\imgui_tables.cpp">
       <Filter>Render\Imgui</Filter>
     </ClCompile>
-    <ClCompile Include="Fucking ImGui\imgui_widgets.cpp">
+    <ClCompile Include="ImGui\imgui_widgets.cpp">
       <Filter>Render\Imgui</Filter>
     </ClCompile>
   </ItemGroup>

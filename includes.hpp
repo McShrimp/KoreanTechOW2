@@ -26,10 +26,10 @@
 #include <d3d9types.h>
 
 /* Overlay & Imgui */
-#include "Fucking ImGui/imgui.h"
-#include "Fucking ImGui/imgui_impl_dx11.h"
-#include "Fucking ImGui/imgui_impl_win32.h"
-#include "Fucking ImGui/imgui_internal.h""
+#include "ImGui/imgui.h"
+#include "ImGui/imgui_impl_dx11.h"
+#include "ImGui/imgui_impl_win32.h"
+#include "ImGui/imgui_internal.h""
 
 /* String Encrypted */
 #include "Xor.hpp"
@@ -54,7 +54,7 @@
 #include "SDK.hpp"
 #pragma warning(disable : 4996)
 
-namespace fs = std::filesystem;
+//namespace fs = std::filesystem;
 using namespace DirectX;
 
 // Forward declare message handler from imgui_impl_win32.cpp
@@ -168,8 +168,8 @@ namespace OW {
 		TYPE_OUTLINE = 0x5A,
 	};
 
-	const char* keys = (u8"VK_XBUTTON2");
-	const char* key_type[] = { (u8"VK_LBUTTON"), (u8"VK_RBUTTON"),  (u8"VK_MBUTTON"),  (u8"VK_XBUTTON1"),  (u8"VK_XBUTTON2") };
+	const char* keys = ("VK_XBUTTON2");
+	const char* key_type[] = { ("VK_LBUTTON"), ("VK_RBUTTON"),  ("VK_MBUTTON"),  ("VK_XBUTTON1"),  ("VK_XBUTTON2") };
 
 	struct espBone {
 		bool boneerror = false;

@@ -352,35 +352,35 @@ namespace OW {
 					ImGui::SetNextWindowPos(ImVec2{ 50, 30 }, ImGuiCond_Once);
 					ImGui::SetNextWindowSize(ImVec2{ 450, 370 }, ImGuiCond_Once);
 					bool _visible = true;
-					if (ImGui::Begin(skCrypt(u8"SEX"), &_visible, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoTitleBar)) {
+					if (ImGui::Begin(skCrypt("SEX"), &_visible, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoTitleBar)) {
 
 						ImGui::SameLine();
 
-						if (ImGui::Button(skCrypt(u8"Aimbot"), ImVec2(150, 50)))
+						if (ImGui::Button(skCrypt("Aimbot"), ImVec2(150, 50)))
 							tab_index = 1;
 
 						ImGui::SameLine();
 
-						if (ImGui::Button(skCrypt(u8"Visuals"), ImVec2(150, 50)))
+						if (ImGui::Button(skCrypt("Visuals"), ImVec2(150, 50)))
 							tab_index = 2;
 
 						ImGui::Separator();
 
 						if (tab_index == 1) {
-							ImGui::Checkbox(skCrypt(u8"Tracking"), &Config::Tracking);
+							ImGui::Checkbox(skCrypt("Tracking"), &Config::Tracking);
 							if (Config::Tracking) {
-								ImGui::Checkbox(skCrypt(u8"Prediction"), &Config::Prediction);
+								ImGui::Checkbox(skCrypt("Prediction"), &Config::Prediction);
 							}
-							ImGui::Checkbox(skCrypt(u8"Flick"), &Config::Flick);
-							ImGui::Checkbox(skCrypt(u8"Hanzo bot"), &Config::hanzo_flick);
+							ImGui::Checkbox(skCrypt("Flick"), &Config::Flick);
+							ImGui::Checkbox(skCrypt("Hanzo bot"), &Config::hanzo_flick);
 							if (Config::hanzo_flick || Config::Prediction) {
 								ImGui::Separator();
-								ImGui::BulletText(skCrypt(u8"Prediction"));
-								ImGui::SliderFloat(skCrypt(u8"Prediction Value"), &Config::predit_level, 0.f, 200.f, skCrypt("%.2f"));
+								ImGui::BulletText(skCrypt("Prediction"));
+								ImGui::SliderFloat(skCrypt("Prediction Value"), &Config::predit_level, 0.f, 200.f, skCrypt("%.2f"));
 							}
 
-							ImGui::BulletText(skCrypt(u8"Key Bind"));
-							if (ImGui::BeginCombo(skCrypt(u8"##Key"), keys))
+							ImGui::BulletText(skCrypt("Key Bind"));
+							if (ImGui::BeginCombo(skCrypt("##Key"), keys))
 							{
 								for (int i = 0; i < 5; i++)
 								{
@@ -411,22 +411,22 @@ namespace OW {
 								ImGui::EndCombo();
 							}
 
-							ImGui::BulletText(skCrypt(u8"Fov"));
-							ImGui::SliderFloat(skCrypt(u8"Fov Value"), &Config::Fov, 0.f, 500.f, skCrypt("%.3f"));
-							ImGui::SliderFloat(skCrypt(u8"HitBox Size Value"), &Config::hitbox, 0.12f, 0.28f, skCrypt("%.3f"));
+							ImGui::BulletText(skCrypt("Fov"));
+							ImGui::SliderFloat(skCrypt("Fov Value"), &Config::Fov, 0.f, 500.f, skCrypt("%.3f"));
+							ImGui::SliderFloat(skCrypt("HitBox Size Value"), &Config::hitbox, 0.12f, 0.28f, skCrypt("%.3f"));
 
-							ImGui::BulletText(skCrypt(u8"Smooth"));
-							ImGui::SliderFloat(skCrypt(u8"Tracking Smooth Value"), &Config::Tracking_smooth, 0.f, 1.f, skCrypt("%.2f"));
-							ImGui::SliderFloat(skCrypt(u8"Flick Smooth Value"), &Config::Flick_smooth, 0.f, 1.f, skCrypt("%.2f"));
+							ImGui::BulletText(skCrypt("Smooth"));
+							ImGui::SliderFloat(skCrypt("Tracking Smooth Value"), &Config::Tracking_smooth, 0.f, 1.f, skCrypt("%.2f"));
+							ImGui::SliderFloat(skCrypt("Flick Smooth Value"), &Config::Flick_smooth, 0.f, 1.f, skCrypt("%.2f"));
 							ImGui::Separator();
 						}
 
 						if (tab_index == 2) {
-							ImGui::Checkbox(skCrypt(u8"Player Info"), &Config::draw_info);
-							ImGui::Checkbox(skCrypt(u8"Skeleton"), &Config::draw_skel);
-							ImGui::Checkbox(skCrypt(u8"Corner Box"), &Config::draw_edge);
-							ImGui::ColorEdit3(skCrypt(u8"Corner Box Color"), (float*)&Config::EnemyCol);
-							ImGui::Checkbox(skCrypt(u8"Fov"), &Config::draw_fov);
+							ImGui::Checkbox(skCrypt("Player Info"), &Config::draw_info);
+							ImGui::Checkbox(skCrypt("Skeleton"), &Config::draw_skel);
+							ImGui::Checkbox(skCrypt("Corner Box"), &Config::draw_edge);
+							ImGui::ColorEdit3(skCrypt("Corner Box Color"), (float*)&Config::EnemyCol);
+							ImGui::Checkbox(skCrypt("Fov"), &Config::draw_fov);
 							ImGui::Separator();
 						}
 					}

@@ -44,7 +44,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -119,6 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,7 +134,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -144,16 +145,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Config.hpp" />
-    <ClInclude Include="Fucking ImGui\imconfig.h" />
-    <ClInclude Include="Fucking ImGui\imgui.h" />
-    <ClInclude Include="Fucking ImGui\imgui_impl_dx11.h" />
-    <ClInclude Include="Fucking ImGui\imgui_impl_win32.h" />
-    <ClInclude Include="Fucking ImGui\imgui_internal.h" />
-    <ClInclude Include="Fucking ImGui\imstb_rectpack.h" />
-    <ClInclude Include="Fucking ImGui\imstb_textedit.h" />
-    <ClInclude Include="Fucking ImGui\imstb_truetype.h" />
     <ClInclude Include="GetComponent.hpp" />
     <ClInclude Include="IDAdefs.h" />
+    <ClInclude Include="ImGui\imconfig.h" />
+    <ClInclude Include="ImGui\imgui.h" />
+    <ClInclude Include="ImGui\imgui_impl_dx11.h" />
+    <ClInclude Include="ImGui\imgui_impl_win32.h" />
+    <ClInclude Include="ImGui\imgui_internal.h" />
+    <ClInclude Include="ImGui\imstb_rectpack.h" />
+    <ClInclude Include="ImGui\imstb_textedit.h" />
+    <ClInclude Include="ImGui\imstb_truetype.h" />
     <ClInclude Include="includes.hpp" />
     <ClInclude Include="offsets.hpp" />
     <ClInclude Include="Overwatch.hpp" />
@@ -166,13 +167,13 @@
     <ClInclude Include="Xor.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Fucking ImGui\imgui.cpp" />
-    <ClCompile Include="Fucking ImGui\imgui_demo.cpp" />
-    <ClCompile Include="Fucking ImGui\imgui_draw.cpp" />
-    <ClCompile Include="Fucking ImGui\imgui_impl_dx11.cpp" />
-    <ClCompile Include="Fucking ImGui\imgui_impl_win32.cpp" />
-    <ClCompile Include="Fucking ImGui\imgui_tables.cpp" />
-    <ClCompile Include="Fucking ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="ImGui\imgui.cpp" />
+    <ClCompile Include="ImGui\imgui_demo.cpp" />
+    <ClCompile Include="ImGui\imgui_draw.cpp" />
+    <ClCompile Include="ImGui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="ImGui\imgui_impl_win32.cpp" />
+    <ClCompile Include="ImGui\imgui_tables.cpp" />
+    <ClCompile Include="ImGui\imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
