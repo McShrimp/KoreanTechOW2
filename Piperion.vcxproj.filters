@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="SDK">
+      <UniqueIdentifier>{c1d7be33-8850-49af-8d46-eee82248ff5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Includes">
+      <UniqueIdentifier>{6799583c-6954-44cc-bda3-1e6aad691c10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Offsets">
+      <UniqueIdentifier>{98fbdef9-beb8-447d-aae7-82cedb9e1c58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Components">
+      <UniqueIdentifier>{ba8e526a-3121-4045-b1bb-3bc89f467c19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{dd3e8756-9242-42ad-94e1-a71cea23d725}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Memory">
+      <UniqueIdentifier>{8c70253d-5cb0-48da-819c-0b7bd20e9784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Entity">
+      <UniqueIdentifier>{e21d03ff-fe44-47dd-9f71-37301f41d49f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SkCrypt">
+      <UniqueIdentifier>{4c63b326-a381-48b8-b71c-c7a8d7746d55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{429d6cd8-a4ac-4f81-b84b-21c370dbac53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render\Imgui">
+      <UniqueIdentifier>{5e8b6709-c395-44b9-a122-7993a767dc81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Web">
+      <UniqueIdentifier>{b2fedb46-780a-4c08-8d13-32a1c039007a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GetComponent.hpp">
+      <Filter>SDK\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes.hpp">
+      <Filter>SDK\Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="offsets.hpp">
+      <Filter>SDK\Offsets</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.hpp">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Fucking ImGui\imconfig.h">
+      <Filter>Render\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Fucking ImGui\imgui.h">
+      <Filter>Render\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Fucking ImGui\imgui_impl_dx11.h">
+      <Filter>Render\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Fucking ImGui\imgui_impl_win32.h">
+      <Filter>Render\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Fucking ImGui\imgui_internal.h">
+      <Filter>Render\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Fucking ImGui\imstb_rectpack.h">
+      <Filter>Render\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Fucking ImGui\imstb_textedit.h">
+      <Filter>Render\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Fucking ImGui\imstb_truetype.h">
+      <Filter>Render\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="SDK.hpp">
+      <Filter>SDK\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.hpp">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Overwatch.hpp">
+      <Filter>SDK\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Target.hpp">
+      <Filter>SDK\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.hpp">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Xor.hpp">
+      <Filter>SkCrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="Web.hpp">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="rsa.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="IDAdefs.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Fucking ImGui\imgui.cpp">
+      <Filter>Render\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Fucking ImGui\imgui_demo.cpp">
+      <Filter>Render\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Fucking ImGui\imgui_draw.cpp">
+      <Filter>Render\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Fucking ImGui\imgui_impl_dx11.cpp">
+      <Filter>Render\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Fucking ImGui\imgui_impl_win32.cpp">
+      <Filter>Render\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Fucking ImGui\imgui_tables.cpp">
+      <Filter>Render\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Fucking ImGui\imgui_widgets.cpp">
+      <Filter>Render\Imgui</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
