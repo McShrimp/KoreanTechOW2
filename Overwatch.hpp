@@ -481,7 +481,7 @@ namespace OW {
 				if (Config::Tracking) {
 					while (GetAsyncKeyState(Config::aim_key))
 					{
-						auto vec = GetVector3(Config::Prediction ? true : false);
+						auto vec = GetVector3(Config::Prediction);
 						if (vec != Vector3(0, 0, 0)) {
 							auto local_angle = SDK->RPM<Vector3>(SDK->g_player_controller + 0x12A0);
 							auto calc_target = CalcAngle(XMFLOAT3(vec.X, vec.Y, vec.Z), viewMatrix_xor.get_location());
