@@ -55,7 +55,7 @@ namespace OW {
 						entity.Alive = (entity.PlayerHealth > 0.f) ? true : false;
 					}
 					if (entity.RotationBase) {
-						entity.Rot = SDK->RPM<Vector3>(SDK->RPM<uint64_t>(entity.RotationBase + 0x7C0) + 0x8FC);
+						entity.Rot = SDK->RPM<Vector3>(SDK->RPM<uint64_t>(entity.RotationBase + 0x7D0) + 0x8FC);
 					}
 					if (entity.VelocityBase) {
 						velo_compo = SDK->RPM<velocity_compo_t>(entity.VelocityBase);
